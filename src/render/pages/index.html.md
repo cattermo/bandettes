@@ -1,7 +1,7 @@
 ---
-layout: "center-content"
+layout: center-content
 url: /
-title: "Home"
+title: Home
 published: true
 ---
 
@@ -9,4 +9,4 @@ published: true
 
 ## Our latest EP  - The Joker
 
-[![Listen to The bandettes' latest EP, The Joker, on Spotify](/images/joker_cd.png)](https://play.spotify.com/album/6cpjqCtgALzGm3JvN38sHQ)
+[![Buy The Bandettes' latest EP, The Joker, on iTunes](/images/joker_cd.png)](https://itunes.apple.com/se/album/the-joker-ep/id990936601)
