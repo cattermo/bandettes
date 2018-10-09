@@ -39,28 +39,28 @@ var docpadConfig = {
           url: '/',
           title: 'Home'
         }, {
-          url: '/latest',
+          url: '/latest.html',
           title: 'News'
         }, {
-          url: '/music',
+          url: '/music.html',
           title: 'Music'
         }, {
-          url: '/live',
+          url: '/live.html',
           title: 'Live'
         }, {
-          url: '/about-us',
+          url: '/about-us.html',
           title: 'About'
         }, {
-          url: '/photos',
+          url: '/photos.html',
           title: 'Photos'
         }, {
-          url: '/merch',
+          url: '/merch.html',
           title: 'Merch'
         }, {
-          url: '/press',
+          url: '/press.html',
           title: 'Press'
         }, {
-          url: '/contact',
+          url: '/contact.html',
           title: 'Contact'
         }
       ],
