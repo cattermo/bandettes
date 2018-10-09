@@ -1,12 +1,7 @@
 ---
 layout: "text-content"
 title: Merch
-url: /merch
-urls: 
-  - /merch/
-  - /merch/index.html
-  - /merch.html
-published: true
+url: "/merch.html"
 ---
 
 

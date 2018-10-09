@@ -1,12 +1,7 @@
 ---
 layout: "text-content"
 title: Press
-url: /press
-urls: 
-  - /press/
-  - /press/index.html
-  - /press.html
-published: true
+url: "/press.html"
 ---
 
 

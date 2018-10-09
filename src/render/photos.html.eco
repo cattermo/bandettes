@@ -1,7 +1,6 @@
 ---
 layout: 'wide-content'
-url: '/photos'
-urls: ['/photos/','/photos/index.html','/photos.html']
+url: "/photos.html"
 ---
 
 <h1>

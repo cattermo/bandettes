@@ -1,8 +1,7 @@
 ---
 layout: 'default'
 title: "News"
-url: '/latest'
-urls: ['/latest/','/latest/index.html','/latest.html']
+url: "/latest.html"
 ---
 feed = [] # @feedData.facebook || []
 ul class:'ban_feed', ->

@@ -1,10 +1,6 @@
 ---
 layout: "text-content"
-url: "/about-us"
-urls: 
-  - "/about-us/"
-  - "/about-us/index.html"
-  - "/about-us.html"
+url: "/about-us.html"
 published: true
 ---
 

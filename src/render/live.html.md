@@ -1,12 +1,7 @@
 ---
-layout: live
+layout: live-layout
 title: "Live"
-url: /live
-urls: 
-  - /live/
-  - /live/index.html
-  - /live.html
-published: true
+url: "/live.html"
 ---
 
 

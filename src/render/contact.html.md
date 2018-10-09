@@ -1,12 +1,7 @@
 ---
 layout: "text-content"
 title: "Contact"
-url: /contact
-urls: 
-  - /contact/
-  - "/contact.html'"
-  - /contact/index.html
-published: true
+url: "/contact.html"
 ---
 
 
