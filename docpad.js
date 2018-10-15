@@ -6,7 +6,7 @@ var docpadConfig = {
     },
     marked: {
       markedRenderer: {
-        image: function(href, title, text) {
+        image: function (href, title, text) {
           var urlParts = href.split('/');
           href = urlParts.length > 1 ? '/' + urlParts[urlParts.length - 2] + '/' + urlParts[urlParts.length - 1] : href;
           var out = '<img class="testar_lite" src="' + href + '" alt="' + text + '"';
@@ -21,12 +21,12 @@ var docpadConfig = {
   },
   regenerateEvery: 1000 * 60 * 60,
   templateData: {
-    // feeds: {
-    //   facebook: {
-    //     url: 'https://graph.facebook.com/TheBandettesmusic/posts?limit=50&access_token=' + process.env.FB_ACCESSTOKEN1 + '|' + process.env.FB_ACCESSTOKEN2,
-    //     cache: false
-    //   },
-    // },
+    feeds: {
+      facebook: {
+        url: 'https://graph.facebook.com/TheBandettesmusic/posts?limit=50&fields=message,type,object_id,link,picture,created_time&access_token=' + process.env.FB_ACCESS_TOKEN,
+        cache: false
+      },
+    },
     feedData: [],
     site: {
       url: 'http://www.bandettes.com',
@@ -100,7 +100,7 @@ var docpadConfig = {
       return this.site.keywords.concat(this.document.keywords || []).join(', ');
     },
     getFacebookPhoto: function (id) {
-      return 'https://graph.facebook.com/' + id + '?access_token=' + process.env.FB_ACCESSTOKEN1 + '|' + process.env.FB_ACCESSTOKEN2;
+      return 'https://graph.facebook.com/' + id + '?fields=images&access_token=' + process.env.FB_ACCESS_TOKEN;
     },
     getSrcset: function (image, isLast) {
       return image.source + ' ' + image.width + 'w ' + (isLast ? '' : ', ');
@@ -122,91 +122,86 @@ var docpadConfig = {
   },
   events: {
     renderBefore: function (arg, next) {
-      return next();
-      // var feedr = require('feedr').create();
-      // var templateData = arg.templateData;
-      // var Task = require('taskgroup').Task;
-      //
-      // function readFeedFixPhoto(feeddata, index, newFeedData, complete) {
-      //   var maxIndex = 50;
-      //   var maxBigWidth = 740;
-      //   var maxStandardWidth = 640;
-      //   var maxSmallWidth = 500;
-      //   var post = feeddata[index];
-      //   var photo;
-      //
-      //   index++;
-      //
-      //   if (index === maxIndex || index === feeddata.length) {
-      //     templateData.feedData.facebook = newFeedData;
-      //     return complete();
-      //   }
-      //
-      //   if (post.message && post.message.indexOf('/The Bandettes') > 0) {
-      //     if (post.type === 'photo') {
-      //       photo = {
-      //         url: templateData.getFacebookPhoto(post.object_id)
-      //       };
-      //       if (photo) {
-      //         return feedr.readFeeds(photo, function (err, res) {
-      //           var i, image, images, len, photopost, ref;
-      //           images = {};
-      //           photopost = res.url;
-      //           ref = photopost.images;
-      //           for (i = 0, len = ref.length; i < len; i++) {
-      //             image = ref[i];
-      //             if (!images.big && image.width < maxBigWidth && image.height < maxBigWidth) {
-      //               images.big = image;
-      //             }
-      //             if (!images.standard && image.width < maxStandardWidth && image.height < maxStandardWidth) {
-      //               images.standard = image;
-      //             }
-      //             if (!images.small && image.width < maxSmallWidth && image.height < maxSmallWidth) {
-      //               images.small = image;
-      //             }
-      //           }
-      //           post.images = images;
-      //           newFeedData.push(post);
-      //           return readFeedFixPhoto(feeddata, index, newFeedData, complete);
-      //         });
-      //       } else {
-      //         newFeedData.push(post);
-      //         return readFeedFixPhoto(feeddata, index, newFeedData, complete);
-      //       }
-      //     } else {
-      //       newFeedData.push(post);
-      //       return readFeedFixPhoto(feeddata, index, newFeedData, complete);
-      //     }
-      //   } else {
-      //     return readFeedFixPhoto(feeddata, index, newFeedData, complete);
-      //   }
-      // }
-      //
-      // function readFeedCallback(complete, err, result) {
-      //   var facebookFeed;
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   templateData.feedData = result;
-      //   facebookFeed = result.facebook && result.facebook.data;
-      //   if (facebookFeed) {
-      //     return readFeedFixPhoto(facebookFeed, 0, [], complete);
-      //   } else {
-      //     return complete();
-      //   }
-      // }
-      //
-      // var task = new Task(function (complete) {
-      //   return feedr.readFeeds(templateData.feeds, readFeedCallback.bind(null, complete));
-      // });
-      // task.done(function (err) {
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   return next();
-      // });
-      //
-      // return task.run();
+      var feedr = require('feedr').create();
+      var templateData = arg.templateData;
+      var Task = require('taskgroup').Task;
+
+      function readFeedFixPhoto(feeddata, index, newFeedData, complete) {
+        var maxIndex = 50;
+        var maxBigWidth = 740;
+        var maxStandardWidth = 640;
+        var maxSmallWidth = 500;
+        var post = feeddata[index];
+        var photo;
+
+        index++;
+
+        if (index === maxIndex || index === feeddata.length) {
+          templateData.feedData.facebook = newFeedData;
+          return complete();
+        }
+
+        if (post.message && (post.message.indexOf('/The Bandettes') > 0 || post.message.indexOf('/ The Bandettes') > 0)) {
+          if (post.type === 'photo') {
+            photo = {
+              url: templateData.getFacebookPhoto(post.object_id)
+            };
+
+            return feedr.readFeeds(photo, function (err, res) {
+              var i, image, images, len, photopost, ref;
+              images = {};
+              photopost = res.url;
+              ref = photopost.images;
+              for (i = 0, len = ref.length; i < len; i++) {
+                image = ref[i];
+                if (!images.big && image.width < maxBigWidth && image.height < maxBigWidth) {
+                  images.big = image;
+                }
+                if (!images.standard && image.width < maxStandardWidth && image.height < maxStandardWidth) {
+                  images.standard = image;
+                }
+                if (!images.small && image.width < maxSmallWidth && image.height < maxSmallWidth) {
+                  images.small = image;
+                }
+              }
+              post.images = images;
+              newFeedData.push(post);
+              return readFeedFixPhoto(feeddata, index, newFeedData, complete);
+            });
+          } else {
+            newFeedData.push(post);
+            return readFeedFixPhoto(feeddata, index, newFeedData, complete);
+          }
+        } else {
+          return readFeedFixPhoto(feeddata, index, newFeedData, complete);
+        }
+      }
+
+      function readFeedCallback(complete, err, result) {
+        var facebookFeed;
+        if (err) {
+          return next(err);
+        }
+        templateData.feedData = result;
+        facebookFeed = result.facebook && result.facebook.data;
+        if (facebookFeed) {
+          return readFeedFixPhoto(facebookFeed, 0, [], complete);
+        } else {
+          return complete();
+        }
+      }
+
+      var task = new Task(function (complete) {
+        return feedr.readFeeds(templateData.feeds, readFeedCallback.bind(null, complete));
+      });
+      task.done(function (err) {
+        if (err) {
+          return next(err);
+        }
+        return next();
+      });
+
+      return task.run();
     },
     // serverExtend: function (opts) {
     //   var server = opts.server;
