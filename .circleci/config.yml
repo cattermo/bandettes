@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: node -v
       - run: npm install
       - run: npm run generate
       - run: node .circleci/deploy.js
