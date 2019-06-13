@@ -1,6 +1,6 @@
 ---
 layout: "text-content"
-url: "/about-us.html"
+url: "/about.html"
 published: true
 ---
 

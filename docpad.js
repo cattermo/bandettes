@@ -48,7 +48,7 @@ var docpadConfig = {
           url: '/live.html',
           title: 'Live'
         }, {
-          url: '/about-us.html',
+          url: '/about.html',
           title: 'About'
         }, {
           url: '/photos.html',
