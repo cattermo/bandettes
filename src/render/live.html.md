@@ -1,14 +1,28 @@
 ---
 layout: live-layout
-title: "Live"
-url: "/live.html"
+title: Live
+url: /live.html
+published: true
 ---
 
 
+## 2022
+
+25 March [Victoriateatern, Malmö](https://www.victoria.se/sv/program/The-Bandettes)
 
 ## Previous live performances
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpfAL6uzA14" frameborder="0" allowfullscreen></iframe>
+
+### 2018
+
+1 May [Slottsparken, Malmö](https://m.facebook.com/events/1724237597662833?paipv=1)
+
+### 2017
+
+1 September [Sommarens sista dagar, Göteborg](https://m.facebook.com/sommarenssistadagar/)
+
+14 July [Innergårdskonsert, Malmö](https://m.facebook.com/events/1989710104608404?acontext=%7B%22source%22%3A%223%22%2C%22action_history%22%3A%22null%22%7D&aref=3&paipv=1)
 
 ### 2015
 
