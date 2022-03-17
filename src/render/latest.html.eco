@@ -1,0 +1,19 @@
+---
+layout: "text-content"
+title: "News"
+url: "/latest.html"
+---
+
+<h1>News</h1>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=450467741691976&autoLogAppEvents=1"
+        nonce="To65nn7G"></script>
+
+<div class="fb-page" data-href="https://www.facebook.com/TheBandettesmusic" data-tabs="timeline" data-width="500"
+     data-height="700" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
+     data-show-facepile="true">
+  <blockquote cite="https://www.facebook.com/TheBandettesmusic" class="fb-xfbml-parse-ignore"><a
+      href="https://www.facebook.com/TheBandettesmusic">The Bandettes</a></blockquote>
+</div>
+
