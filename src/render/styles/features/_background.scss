@@ -9,7 +9,7 @@
     height: 100%;
     position: absolute;
     z-index: -2;
-    background-image: url('/images/bandettes_background_20_13_xs.jpg');
+    background-image: url('/images/bandettes_background_20_13_lg.jpg');
     background-position: top;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -22,11 +22,11 @@
         background-image: url('/images/bandettes_background_16_9_sm.jpg');
     }
 
-    @include ban_mq-gte-small {
+    @include ban_mq-gte-medium {
         background-image: url('/images/bandettes_background_16_9_md.jpg');
     }
 
-    @include ban_mq-gte-small {
+    @include ban_mq-gte-large {
         background-image: url('/images/bandettes_background_16_9_lg.jpg');
     }
 }
@@ -37,7 +37,7 @@
     content: '';
     background: linear-gradient(to bottom, $ban_color-bg 0%, rgba($ban_color-bg, 0) 30%);
     width: 100%;
-    padding-top: 65%;
+    padding-top: 75%;
     display: block;
     top: 0;
     margin-top: 13%;
